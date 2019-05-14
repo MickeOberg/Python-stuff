@@ -7,7 +7,7 @@ def cert_lookup(hostname):
     port = 443
 
     context = ssl.create_default_context()
-
+    # Used for SNI
     with socket.create_connection((hostname, port)) as sock:
         with context.wrap_socket(sock, server_hostname=hostname) as sslsock:
             der_cert = sslsock.getpeercert(True)
